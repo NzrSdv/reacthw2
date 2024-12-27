@@ -27,10 +27,10 @@ export default function Main() {
     <main>
       <section>
         <h1>Booksy nashi</h1>
-        <div>
+        <div className="book-flex">
             {list.map(book => (
                 <div className="book-card">
-                    <Image src={book.book_image} width={100} height={100}/>
+                    <Image src={book.book_image} width={100} height={100} alt="book image"/>
                     <h3>{book.book_name}</h3>
                     <p>{book.book_review}</p>
                 </div>

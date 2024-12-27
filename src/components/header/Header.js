@@ -6,6 +6,7 @@ export default function Header() {
     <header>
       <div className="Logo">
         <a href="#">Main page</a>
+      </div>
           {isSign && (
             <ul>
               <li>
@@ -23,7 +24,6 @@ export default function Header() {
           </li>
           </ul>
          )}
-      </div>
     </header>
   );
 }
