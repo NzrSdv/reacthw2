@@ -1,47 +1,51 @@
-body{
-    padding: 0;
-    margin:0;
-    box-sizing: border-box;
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
-header{
-    background-color: lightblue;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding:0 100px;
+.container {
+  width: 90%;
 }
-ul{
-    list-style: none;
-    display: flex;
-    gap:30px;
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-a{
-    text-decoration: none;
-    color:royalblue
-}
-.book-flex{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap:50px;
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
 }
 
-.book-card{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 200px;
-    height: 250px;
-    border:1px solid black;
+ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+a {
+  text-decoration: none;
+  color: white;
+}
+.book-flex {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 50px;
 }
 
-footer{
-    margin-top: 310px;
-    background-color: lightblue;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding:0 100px;
+.slider {
+  display: flex;
+}
+
+footer {
+  margin-top: 310px;
+  background-color: rgb(55, 141, 170);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
 }

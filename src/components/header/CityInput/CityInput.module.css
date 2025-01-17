@@ -1,0 +1,7 @@
+.outer_wrap{
+    display: flex;
+    flex-direction: row;
+    gap:20px;
+    align-items: center;
+    justify-content: center;
+}

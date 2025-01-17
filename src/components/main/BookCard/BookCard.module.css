@@ -1,0 +1,32 @@
+.book_card{
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: royalblue;
+    border-radius: 20px;
+    width: 650px;
+    min-height: 250px;
+    padding:0 50px;
+    border:1px solid black;
+    color:white;
+    text-align:center;
+}
+.moreInfo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.btn{
+    padding:10px 20px;
+    border:none;
+    color:white;
+    background-color: skyblue;
+    transition: ease-in-out .2s;
+    border-radius: 20px;
+}
+.btn:hover{
+    background-color: rgb(102, 153, 173);
+
+}

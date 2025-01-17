@@ -1,42 +1,10 @@
-import Image from "next/image";
-
-export default function Main() {
-  let list = [
-    {
-      book_name: "abc",
-      book_review: "fff",
-      book_image: "https://images.pexels.com/photos/1029141/pexels-photo-1029141.jpeg",
-    },
-    {
-      book_name: "abc",
-      book_review: "fff",
-      book_image: "https://images.pexels.com/photos/1029141/pexels-photo-1029141.jpeg",
-    },
-    {
-      book_name: "abc",
-      book_review: "fff",
-      book_image: "https://images.pexels.com/photos/1029141/pexels-photo-1029141.jpeg",
-    },
-    {
-      book_name: "abc",
-      book_review: "fff",
-      book_image: "https://images.pexels.com/photos/1029141/pexels-photo-1029141.jpeg",
-    },
-  ];
+import BooksList from "./BooksList.js/BooksList";
+import SalesSection from "./SalesSection/SalesSection";
+export default function Main({books}) {
   return (
-    <main>
-      <section>
-        <h1>Booksy nashi</h1>
-        <div className="book-flex">
-            {list.map(book => (
-                <div className="book-card">
-                    <Image src={book.book_image} width={100} height={100} alt="book image"/>
-                    <h3>{book.book_name}</h3>
-                    <p>{book.book_review}</p>
-                </div>
-            ))}
-        </div>
-      </section>
-    </main>
+    <main className="main">
+      <BooksList books={books}></BooksList>
+    <SalesSection></SalesSection>
+      </main>
   );
 }

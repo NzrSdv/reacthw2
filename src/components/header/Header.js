@@ -1,29 +1,16 @@
 import React from "react";
+import CityInput from "./CityInput/CityInput.js";
+import styles from "./Header.module.css";
 
-export default function Header() {
-  let isSign = true;
+export default function Header({setCity,city}) {
+  
   return (
-    <header>
-      <div className="Logo">
-        <a href="#">Main page</a>
+    <header className={styles.header}>
+      <div className={styles.logo}>
+        <a href="#">Logo</a>
+        <h6 className={styles.city}>{city}</h6>
       </div>
-          {isSign && (
-            <ul>
-              <li>
-                <a href="#"> Register</a>
-              </li>
-              <li>
-                <a href="#">Sign in</a>
-              </li>
-            </ul>
-          )}
-         {!isSign && (
-          <ul>
-            <li>
-            <a href="#">About us</a>
-          </li>
-          </ul>
-         )}
+      <CityInput setCity={setCity} />
     </header>
   );
 }
