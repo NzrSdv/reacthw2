@@ -1,8 +1,9 @@
+'use client';
 import Image from "next/image";
 import { useState } from "react";
 import styles from "./BookCard.module.css";
 
-export default function BookCard({ book }) {
+export default function BookCard({ book ,DeleteBook}) {
   const [moreState, setMoreState] = useState(false);
   return (
     <div>
@@ -32,6 +33,7 @@ export default function BookCard({ book }) {
           {!moreState && "more"}
           {moreState && "less"}
         </button>
+        <button onClick={() => {DeleteBook(book.id)}}>Delete</button>
       </div>
     </div>
   );
