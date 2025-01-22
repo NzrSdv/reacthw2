@@ -1,3 +1,4 @@
+'use client';
 import { useState } from "react";
 import Image from "next/image";
 import styles from "./SalesSection.module.css";
@@ -32,33 +33,35 @@ export default function SalesSection() {
   }
   return (
     <section className={styles.slider_element}>
+      <div className="container">
       <h2>Sales ours</h2>
 
-      <div className={styles.slider_element}>
-      <div className={styles.slider}>
-        <Image
-          width={400}
-          height={350}
-          alt="some slider"
-          src={images[sliderIndex == 0 ? 9 : sliderIndex - 1]}
-        />
-        <Image
-          width={400}
-          height={350}
-          alt="some slider"
-          src={images[sliderIndex]}
-        />
-        <Image
-          width={400}
-          height={350}
-          alt="some slider"
-          src={images[sliderIndex == 9 ? 0 : sliderIndex + 1]}
-        />
-      </div>
-      <div className={styles.buttons}>
-        <button className="leftBtn" onClick={() => {changeSlide(true)}}>Left</button>
-        <button className="rightBtn" onClick={() => {changeSlide(false)}}>Right</button>
-      </div>
+<div className={styles.slider_element}>
+<div className={styles.slider}>
+  <Image className={styles.imageSlide}
+    width={400}
+    height={250}
+    alt="some slider"
+    src={images[sliderIndex == 0 ? 9 : sliderIndex - 1]}
+  />
+  <Image className={styles.imageSlide}
+    width={400}
+    height={250}
+    alt="some slider"
+    src={images[sliderIndex]}
+  />
+  <Image className={styles.imageSlide}
+    width={400}
+    height={250}
+    alt="some slider"
+    src={images[sliderIndex == 9 ? 0 : sliderIndex + 1]}
+  />
+</div>
+<div className={styles.buttons}>
+  <button className="button" onClick={() => {changeSlide(true)}}>Left</button>
+  <button className="button" onClick={() => {changeSlide(false)}}>Right</button>
+</div>
+</div>
       </div>
     </section>
   );

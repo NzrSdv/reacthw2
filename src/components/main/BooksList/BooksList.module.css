@@ -1,0 +1,59 @@
+.openButton{
+    width: 45px;
+    height: 45px;
+    border:none;
+    outline:none;
+    font-size: large;
+    border-radius: 10px;
+    color:white;
+    text-align:center;
+    background-color: royalblue;
+    transition: .1s ease-in-out;
+}
+.openButton:hover{
+    background-color: rgb(47, 76, 162);
+}
+.inputs {
+  background-color: royalblue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 35dvw;
+  height: 70dvh;
+  color: white;
+  border-radius: 20px;
+  gap:30px;
+}
+.inputBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+.upperLine {
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+.titleRow {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+
+
+.booksFlex{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 50px;
+  }

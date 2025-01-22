@@ -1,14 +1,24 @@
 .slider{
     display: flex;
     gap:20px;
+    background-color: royalblue;
+    padding:40px;
+    border-radius: 20px;
 }
 .buttons{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap:20px;
+}
+
+.imageSlide{
+    max-width: 400px;
+    height: 250px;
+    border-radius: 10px;
+    border:5px solid white;
 }
 .slider_element{
-    margin-top:20px ;
     display: flex;
     flex-direction: column;
     align-items: center;

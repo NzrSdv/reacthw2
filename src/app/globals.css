@@ -1,12 +1,19 @@
-body {
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 .container {
+  margin-top: 80px;
   width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 100px;
 }
 section {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,7 +25,6 @@ section {
   justify-content: center;
   gap: 60px;
 }
-
 ul {
   list-style: none;
   display: flex;
@@ -28,24 +34,39 @@ a {
   text-decoration: none;
   color: white;
 }
-.book-flex {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 50px;
-}
-
 .slider {
   display: flex;
 }
-
-footer {
-  margin-top: 310px;
-  background-color: rgb(55, 141, 170);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
+input {
+  outline: none;
+  border: none;
+  color: white;
+  background-color: royalblue;
+  border-bottom: 1px solid white;
+  padding: 0 0 5px;
+}
+input::placeholder {
+  color: rgba(255, 255, 255, .7);
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+button {
+  outline: none;
+  border: none;
+}
+.button{
+  padding:10px 20px;
+  border-radius: 10px;
+  border:none;
+  outline:none;
+  color:white;
+  background-color: royalblue;
+  border:1px solid white;
+  transition:.1s ease-in-out;
+}
+.button:hover{
+  background-color: rgb(59, 92, 191);
 }
