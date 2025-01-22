@@ -7,25 +7,27 @@ export default function BookCard({ book ,DeleteBook}) {
   const [moreState, setMoreState] = useState(false);
   return (
     <div>
-      <div className={styles.book_card}>
+      <div className={styles.bookCard}>
         <Image
+        className={styles.bookImage}
           src={book.book_image}
-          width={100}
-          height={100}
+          width={250}
+          height={250}
           alt="book image"
         />
-        <div>
+        <div className={styles.Information}>
           <h3>{book.book_name}</h3>
-          <p>{book.book_review}</p>
         </div>
         {moreState && (
-          <div className={styles.moreInfo}>
-            <h3>{book.book_moreInfo.printing_company}</h3>
-            <h3>{book.book_moreInfo.printing_year}</h3>
-            <h3>{book.book_moreInfo.pricing}</h3>
+          <div className={styles.Information}>
+            <p>{book.book_review}</p>
+            <p>{book.book_moreInfo.printing_company}</p>
+            <p>{book.book_moreInfo.printing_year}</p>
+            <p>{book.book_moreInfo.pricing}</p>
           </div>
         )}
-        <button className={styles.btn}
+       <div className={styles.buttons}>
+       <button className={`button ${styles.button}`}
           onClick={() => {
             setMoreState(!moreState);
           }}
@@ -33,7 +35,8 @@ export default function BookCard({ book ,DeleteBook}) {
           {!moreState && "more"}
           {moreState && "less"}
         </button>
-        <button onClick={() => {DeleteBook(book.id)}}>Delete</button>
+        <button className={`button ${styles.deleteButton}`} onClick={() => {DeleteBook(book.id)}}>Delete</button>
+       </div>
       </div>
     </div>
   );

@@ -1,3 +1,4 @@
+'use client';
 import AuthorsSection from "./AuthorsSection/AuthorsSection";
 import BooksList from "./BooksList/BooksList";
 import SalesSection from "./SalesSection/SalesSection";

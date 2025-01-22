@@ -1,23 +1,32 @@
-"use client";
+'use client';
 import { useState } from "react";
 import BookCard from "../BookCard/BookCard";
-export default function BooksList({ setBooks,books,DeleteBook }) {
+import styles from "./BooksList.module.css";
+export default function BooksList({ setBooks, books, DeleteBook }) {
   const [addBook, setAddBook] = useState(false);
-  const [bookName,setBookName] = useState("");
-  const [bookReview,setBookReview] = useState("");
-  const [bookImg,setBookImg] = useState("");
-  const [bookCompany,setBookCompany] = useState("");
-  const [bookYear,setBookYear] = useState("");
-  const [bookPrice,setBookPrice] = useState("")
+  const [bookName, setBookName] = useState("");
+  const [bookReview, setBookReview] = useState("");
+  const [bookImg, setBookImg] = useState("");
+  const [bookCompany, setBookCompany] = useState("");
+  const [bookYear, setBookYear] = useState("");
+  const [bookPrice, setBookPrice] = useState("");
 
+  function defaultKa(){
+    setBookName("");
+    setBookReview("");
+    setBookImg("");
+    setBookCompany("");
+    setBookYear("");
+    setBookPrice("");
+  }
   return (
     <section className="section">
       <div className="container">
-        <div className="title_row">
-          <div className="upper_line">
+        <div className={styles.upperLine}>
+          <div className={styles.titleRow}>
             <h1>Booksy nashi</h1>
             <button
-              className="btn"
+              className={styles.openButton}
               onClick={() => {
                 setAddBook(!addBook);
               }}
@@ -26,34 +35,80 @@ export default function BooksList({ setBooks,books,DeleteBook }) {
             </button>
           </div>
           {addBook && (
-            <div className="inputs">
-              <div className="input_block">
+            <div className={styles.inputs}>
+              <div className={styles.inputBlock}>
                 <h4>Main info</h4>
-                <input type="text" placeholder="book name" onChange={(e) => {setBookName(e.target.value)}} />
-                <input type="text" placeholder="book review"  onChange={(e) => {setBookReview(e.target.value)}}/>
-                <input type="text" placeholder="book image src" onChange={(e) => {setBookImg(e.target.value)}} />
+                <input
+                  type="text"
+                  placeholder="book name"
+                  value={bookName}
+                  onChange={(e) => {
+                    setBookName(e.target.value);
+                  }}
+                />
+                <input
+                  type="text"
+                  placeholder="book review"
+                  value={bookReview}
+                  onChange={(e) => {
+                    setBookReview(e.target.value);
+                  }}
+                />
+                <input
+                  type="text"
+                  placeholder="book image src"
+                  value={bookImg}
+                  onChange={(e) => {
+                    setBookImg(e.target.value);
+                  }}
+                />
               </div>
 
-              <div className="input_block">
+              <div className={styles.inputBlock}>
                 <h4>More info</h4>
-                <input type="text" placeholder="book company"  onChange={(e) => {setBookCompany(e.target.value)}}/>
-                <input type="number" placeholder="book year"  onChange={(e) => {setBookYear(e.target.value)}}/>
-                <input type="number" placeholder="book pricing"  onChange={(e) => {setBookPrice(e.target.value)}}/>
+                <input
+                  type="text"
+                  placeholder="book company"
+                  value={bookCompany}
+                  onChange={(e) => {
+                    setBookCompany(e.target.value);
+                  }}
+                />
+                <input
+                  type="number"
+                  placeholder="book year"
+                  value={bookYear}
+                  onChange={(e) => {
+                    setBookYear(e.target.value);
+                  }}
+                />
+                <input
+                  type="number"
+                  placeholder="book pricing"
+                  value={bookPrice}
+                  onChange={(e) => {
+                    setBookPrice(e.target.value);
+                  }}
+                />
               </div>
               <button
-               className="addBtn"
+                className="button"
                 onClick={() => {
-                  setBooks([...books, {
-                    id:books.length+1,
-                    book_name:bookName,
-                    book_review:bookReview,
-                    book_image:bookImg,
-                    book_moreInfo:{
-                      printing_company:bookCompany,
-                      printing_year:bookYear,
-                      pricing:bookPrice,
-                    }
-                  }]);
+                  setBooks([
+                    ...books,
+                    {
+                      id: books.length + 1,
+                      book_name: bookName,
+                      book_review: bookReview,
+                      book_image: bookImg,
+                      book_moreInfo: {
+                        printing_company: bookCompany,
+                        printing_year: bookYear,
+                        pricing: bookPrice,
+                      },
+                    },
+                  ]);
+                  defaultKa();
                 }}
               >
                 Add new Book
@@ -61,7 +116,7 @@ export default function BooksList({ setBooks,books,DeleteBook }) {
             </div>
           )}
         </div>
-        <div className="book-flex">
+        <div className={styles.booksFlex}>
           {books.map((book, index) => (
             <BookCard key={index} book={book} DeleteBook={DeleteBook} />
           ))}
