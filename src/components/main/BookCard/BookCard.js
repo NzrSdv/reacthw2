@@ -21,9 +21,9 @@ export default function BookCard({ book ,DeleteBook}) {
         {moreState && (
           <div className={styles.Information}>
             <p>{book.book_review}</p>
-            <p>{book.book_moreInfo.printing_company}</p>
-            <p>{book.book_moreInfo.printing_year}</p>
-            <p>{book.book_moreInfo.pricing}</p>
+            <p>{book.printing_company}</p>
+            <p>{book.printing_year}</p>
+            <p>{book.pricing}</p>
           </div>
         )}
        <div className={styles.buttons}>

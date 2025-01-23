@@ -1,8 +1,10 @@
 "use client";
-import React, { useState } from "react";
+import React, {  useState } from "react";
 import Main from "@/components/main/Main";
 import Header from "../components/header/Header";
 import Footer from "@/components/footer/Footer";
+
+import { useSearch } from "@/hooks/useSearch";
 export default function Home() {
   const [city, setCity] = useState("");
   const [books, setBooks] = useState([
@@ -12,11 +14,9 @@ export default function Home() {
       book_review: "first_a",
       book_image:
         "https://images.pexels.com/photos/1029141/pexels-photo-1029141.jpeg",
-      book_moreInfo: {
-        printing_company: "Эксклюзивная классика 1",
-        printing_year: 2000,
-        pricing: "20$",
-      },
+      printing_company: "Эксклюзивная классика 1",
+      printing_year: 2000,
+      pricing: "20$",
     },
     {
       id: 2,
@@ -24,11 +24,9 @@ export default function Home() {
       book_review: "second_b",
       book_image:
         "https://images.pexels.com/photos/1029141/pexels-photo-1029141.jpeg",
-      book_moreInfo: {
-        printing_company: "Эксклюзивная классика 2",
-        printing_year: 2021,
-        pricing: "21$",
-      },
+      printing_company: "Эксклюзивная классика 2",
+      printing_year: 2021,
+      pricing: "21$",
     },
     {
       id: 3,
@@ -36,11 +34,9 @@ export default function Home() {
       book_review: "third_c",
       book_image:
         "https://images.pexels.com/photos/1029141/pexels-photo-1029141.jpeg",
-      book_moreInfo: {
-        printing_company: "Эксклюзивная классика 3",
-        printing_year: 2005,
-        pricing: "15$",
-      },
+      printing_company: "Эксклюзивная классика 3",
+      printing_year: 2005,
+      pricing: "15$",
     },
     {
       id: 4,
@@ -48,22 +44,23 @@ export default function Home() {
       book_review: "fourth_d",
       book_image:
         "https://images.pexels.com/photos/1029141/pexels-photo-1029141.jpeg",
-      book_moreInfo: {
-        printing_company: "Эксклюзивная классика 4 ",
-        printing_year: 1990,
-        pricing: "10$",
-      },
+      printing_company: "Эксклюзивная классика 4 ",
+      printing_year: 1990,
+      pricing: "10$",
     },
   ]);
   const [authors, setAuthors] = useState([
     {
-      id:1,
+      id: 1,
       author_name: "Alexander Duma",
       famous_book: "three musketeers",
       author_photo:
         "https://images.pexels.com/photos/9268697/pexels-photo-9268697.jpeg",
     },
   ]);
+  const [searchBooks, setSearchBooks] = useState("");
+  const [selectBooks, setSelectBooks] = useState("");
+  const searchedAndFilteredBooks = useSearch(searchBooks,selectBooks,books);
 
   function DeleteBook(id) {
     setBooks(
@@ -89,11 +86,15 @@ export default function Home() {
 
       <Main
         setBooks={setBooks}
-        books={books}
+        books={searchedAndFilteredBooks}
         DeleteBook={DeleteBook}
         setAuthors={setAuthors}
         authors={authors}
         DeleteAuthor={DeleteAuthor}
+        searchBooks={searchBooks}
+        setSearchBooks={setSearchBooks}
+        selectBooks={selectBooks}
+        setSelectBooks={setSelectBooks}
       />
       <Footer />
     </div>

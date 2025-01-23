@@ -2,7 +2,16 @@
 import { useState } from "react";
 import BookCard from "../BookCard/BookCard";
 import styles from "./BooksList.module.css";
-export default function BooksList({ setBooks, books, DeleteBook }) {
+import Select from "@/components/select/Select";
+export default function BooksList({
+  setBooks,
+  books,
+  DeleteBook,
+  searchBooks,
+  setSearchBooks,
+  selectBooks,
+  setSelectBooks,
+}) {
   const [addBook, setAddBook] = useState(false);
   const [bookName, setBookName] = useState("");
   const [bookReview, setBookReview] = useState("");
@@ -11,7 +20,7 @@ export default function BooksList({ setBooks, books, DeleteBook }) {
   const [bookYear, setBookYear] = useState("");
   const [bookPrice, setBookPrice] = useState("");
 
-  function defaultKa(){
+  function defaultKa() {
     setBookName("");
     setBookReview("");
     setBookImg("");
@@ -33,6 +42,17 @@ export default function BooksList({ setBooks, books, DeleteBook }) {
             >
               {addBook && "-"} {!addBook && "+"}
             </button>
+            <input
+             className={styles.searchInput}
+              type="text"
+              placeholder="Search"
+              value={searchBooks != undefined || searchBooks != null ? searchBooks : ""}
+              onInput={(e) => {
+                setSearchBooks(e.target.value);
+                console.log(searchBooks);
+              }}
+            />
+            <Select selectBooks={selectBooks} setSelectBooks={setSelectBooks} />
           </div>
           {addBook && (
             <div className={styles.inputs}>
@@ -101,11 +121,9 @@ export default function BooksList({ setBooks, books, DeleteBook }) {
                       book_name: bookName,
                       book_review: bookReview,
                       book_image: bookImg,
-                      book_moreInfo: {
-                        printing_company: bookCompany,
-                        printing_year: bookYear,
-                        pricing: bookPrice,
-                      },
+                      printing_company: bookCompany,
+                      printing_year: bookYear,
+                      pricing: bookPrice,
                     },
                   ]);
                   defaultKa();
