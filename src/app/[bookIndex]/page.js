@@ -22,7 +22,7 @@ export default function Book() {
     useEffect(() => {
       getB();
     }, []);
-  return <div>
+  return <div style={{display:"flex", alignItems:"center",justifyContent:"center",marginTop:"50px"}}>
     {book && <BookCard book={book} DeleteBook={undefined}></BookCard>}
     {!book && <h1>Downloading</h1>}
   </div>;

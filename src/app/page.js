@@ -1,13 +1,11 @@
 "use client";
 import React, {  useEffect, useState } from "react";
 import Main from "@/components/main/Main";
-import Header from "../components/header/Header";
-import Footer from "@/components/footer/Footer";
 import axios from "axios";
 
 import { useSearch } from "@/hooks/useSearch";
 export default function Home() {
-  const [city, setCity] = useState("");
+  
   const [books, setBooks] = useState([]);
   const [authors, setAuthors] = useState([
     {
@@ -52,7 +50,7 @@ export default function Home() {
   },[])
   return (
     <div>
-      <Header setCity={setCity} city={city} />
+     
 
       <Main
         setBooks={setBooks}
@@ -66,7 +64,6 @@ export default function Home() {
         selectBooks={selectBooks}
         setSelectBooks={setSelectBooks}
       />
-      <Footer />
     </div>
   );
 }

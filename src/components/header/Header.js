@@ -1,9 +1,10 @@
-import React from "react";
+'use client'; 
+import React, { useState } from "react";
 import CityInput from "./CityInput/CityInput.js";
 import styles from "./Header.module.css";
 
-export default function Header({setCity,city}) {
-  
+export default function Header() {
+  const [city, setCity] = useState("");
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
