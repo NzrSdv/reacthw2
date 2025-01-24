@@ -117,13 +117,13 @@ export default function BooksList({
                   setBooks([
                     ...books,
                     {
-                      id: books.length + 1,
-                      book_name: bookName,
-                      book_review: bookReview,
-                      book_image: bookImg,
-                      printing_company: bookCompany,
-                      printing_year: bookYear,
-                      pricing: bookPrice,
+                      index: books.length + 1,
+                      title: bookName,
+                      description: bookReview,
+                      cover: bookImg,
+                      originalTitle: bookCompany,
+                      releasedDate: bookYear,
+                      pages: bookPrice,
                     },
                   ]);
                   defaultKa();
