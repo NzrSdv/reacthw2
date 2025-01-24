@@ -27,11 +27,12 @@ export default function Home() {
   async function getBooks(){
     const response = await axios.get(url,{})
     setBooks(response.data)
+    console.log(response.data);
   }
-  function DeleteBook(id) {
+  function DeleteBook(index) {
     setBooks(
       [...books].filter((element) => {
-        if (element.id != id) {
+        if (element.index != index) {
           return element;
         }
       })
