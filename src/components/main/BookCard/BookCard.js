@@ -1,42 +1,57 @@
-'use client';
+"use client";
 import Image from "next/image";
 import { useState } from "react";
 import styles from "./BookCard.module.css";
+import Link from "next/link";
+import { useParams } from "next/navigation";
 
-export default function BookCard({ book ,DeleteBook}) {
+export default function BookCard({ book, DeleteBook }) {
   const [moreState, setMoreState] = useState(false);
+  console.log(book);
+  const { bookIndex } = useParams();
   return (
     <div>
       <div className={styles.bookCard}>
         <Image
-        className={styles.bookImage}
-          src={book.book_image}
+          className={styles.bookImage}
+          src={book.cover}
           width={250}
-          height={250}
+          height={350}
           alt="book image"
         />
         <div className={styles.Information}>
-          <h3>{book.book_name}</h3>
+          <h3>{book.title}</h3>
         </div>
         {moreState && (
           <div className={styles.Information}>
-            <p>{book.book_review}</p>
-            <p>{book.printing_company}</p>
-            <p>{book.printing_year}</p>
-            <p>{book.pricing}</p>
+            <p>{book.description}</p>
+            <p>{book.originalTitle}</p>
+            <p>{book.releaseDate}</p>
+            <p>{book.pages} pages</p>
           </div>
         )}
-       <div className={styles.buttons}>
-       <button className={`button ${styles.button}`}
-          onClick={() => {
-            setMoreState(!moreState);
-          }}
-        >
-          {!moreState && "more"}
-          {moreState && "less"}
-        </button>
-        <button className={`button ${styles.deleteButton}`} onClick={() => {DeleteBook(book.id)}}>Delete</button>
-       </div>
+        <div className={styles.buttons}>
+          <button
+            className={`button ${styles.button}`}
+            onClick={() => {
+              setMoreState(!moreState);
+            }}
+          >
+            {!moreState && "more"}
+            {moreState && "less"}
+          </button>
+          {!bookIndex && <Link href={`/${book.index}`}>Details</Link>}
+          {DeleteBook != undefined && (
+            <button
+              className={`button ${styles.deleteButton}`}
+              onClick={() => {
+                DeleteBook(book.index);
+              }}
+            >
+              Delete
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -16,9 +16,9 @@ export const useSearch = (searchBooks, selectBooks, books) => {
     }
     if (searchBooks.length > 0) {
       newBooks = books.filter((book) => 
-      book.book_name.toLowerCase().includes(searchBooks.toLowerCase()) ||
-      book.book_review.toLowerCase().includes(searchBooks.toLowerCase()) ||
-      book.printing_company.toLowerCase().includes(searchBooks.toLowerCase())
+      book.title.toLowerCase().includes(searchBooks.toLowerCase()) ||
+      book.description.toLowerCase().includes(searchBooks.toLowerCase()) ||
+      book.originalTitle.toLowerCase().includes(searchBooks.toLowerCase())
       )
     }
     return newBooks;

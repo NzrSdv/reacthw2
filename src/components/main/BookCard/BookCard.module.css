@@ -1,5 +1,4 @@
 .bookCard{
-    
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -8,7 +7,7 @@
     border-radius: 20px;
     padding:40px;
     max-width: 300px;
-    height: 610px;
+    min-height: 610px;
     gap:10px;   
     color:white;
     text-align:center;

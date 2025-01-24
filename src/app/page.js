@@ -1,54 +1,12 @@
 "use client";
-import React, {  useState } from "react";
+import React, {  useEffect, useState } from "react";
 import Main from "@/components/main/Main";
-import Header from "../components/header/Header";
-import Footer from "@/components/footer/Footer";
+import axios from "axios";
 
 import { useSearch } from "@/hooks/useSearch";
 export default function Home() {
-  const [city, setCity] = useState("");
-  const [books, setBooks] = useState([
-    {
-      id: 1,
-      book_name: "first",
-      book_review: "first_a",
-      book_image:
-        "https://images.pexels.com/photos/1029141/pexels-photo-1029141.jpeg",
-      printing_company: "Эксклюзивная классика 1",
-      printing_year: 2000,
-      pricing: "20$",
-    },
-    {
-      id: 2,
-      book_name: "second",
-      book_review: "second_b",
-      book_image:
-        "https://images.pexels.com/photos/1029141/pexels-photo-1029141.jpeg",
-      printing_company: "Эксклюзивная классика 2",
-      printing_year: 2021,
-      pricing: "21$",
-    },
-    {
-      id: 3,
-      book_name: "third",
-      book_review: "third_c",
-      book_image:
-        "https://images.pexels.com/photos/1029141/pexels-photo-1029141.jpeg",
-      printing_company: "Эксклюзивная классика 3",
-      printing_year: 2005,
-      pricing: "15$",
-    },
-    {
-      id: 4,
-      book_name: "fourth",
-      book_review: "fourth_d",
-      book_image:
-        "https://images.pexels.com/photos/1029141/pexels-photo-1029141.jpeg",
-      printing_company: "Эксклюзивная классика 4 ",
-      printing_year: 1990,
-      pricing: "10$",
-    },
-  ]);
+  
+  const [books, setBooks] = useState([]);
   const [authors, setAuthors] = useState([
     {
       id: 1,
@@ -58,14 +16,21 @@ export default function Home() {
         "https://images.pexels.com/photos/9268697/pexels-photo-9268697.jpeg",
     },
   ]);
+  const url = "https://potterapi-fedeperin.vercel.app/en/books";
   const [searchBooks, setSearchBooks] = useState("");
   const [selectBooks, setSelectBooks] = useState("");
   const searchedAndFilteredBooks = useSearch(searchBooks,selectBooks,books);
 
-  function DeleteBook(id) {
+
+  async function getBooks(){
+    const response = await axios.get(url,{})
+    setBooks(response.data)
+    console.log(response.data);
+  }
+  function DeleteBook(index) {
     setBooks(
       [...books].filter((element) => {
-        if (element.id != id) {
+        if (element.index != index) {
           return element;
         }
       })
@@ -80,9 +45,12 @@ export default function Home() {
       })
     );
   }
+  useEffect(() => {
+    getBooks();
+  },[])
   return (
     <div>
-      <Header setCity={setCity} city={city} />
+     
 
       <Main
         setBooks={setBooks}
@@ -96,7 +64,6 @@ export default function Home() {
         selectBooks={selectBooks}
         setSelectBooks={setSelectBooks}
       />
-      <Footer />
     </div>
   );
 }

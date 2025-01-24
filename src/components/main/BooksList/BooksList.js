@@ -60,7 +60,7 @@ export default function BooksList({
                 <h4>Main info</h4>
                 <input
                   type="text"
-                  placeholder="book name"
+                  placeholder="book title"
                   value={bookName}
                   onChange={(e) => {
                     setBookName(e.target.value);
@@ -68,7 +68,7 @@ export default function BooksList({
                 />
                 <input
                   type="text"
-                  placeholder="book review"
+                  placeholder="book description"
                   value={bookReview}
                   onChange={(e) => {
                     setBookReview(e.target.value);
@@ -76,7 +76,7 @@ export default function BooksList({
                 />
                 <input
                   type="text"
-                  placeholder="book image src"
+                  placeholder="book cover"
                   value={bookImg}
                   onChange={(e) => {
                     setBookImg(e.target.value);
@@ -88,7 +88,7 @@ export default function BooksList({
                 <h4>More info</h4>
                 <input
                   type="text"
-                  placeholder="book company"
+                  placeholder="book original Title"
                   value={bookCompany}
                   onChange={(e) => {
                     setBookCompany(e.target.value);
@@ -96,7 +96,7 @@ export default function BooksList({
                 />
                 <input
                   type="number"
-                  placeholder="book year"
+                  placeholder="book releasDate"
                   value={bookYear}
                   onChange={(e) => {
                     setBookYear(e.target.value);
@@ -104,7 +104,7 @@ export default function BooksList({
                 />
                 <input
                   type="number"
-                  placeholder="book pricing"
+                  placeholder="book pages"
                   value={bookPrice}
                   onChange={(e) => {
                     setBookPrice(e.target.value);
@@ -117,13 +117,13 @@ export default function BooksList({
                   setBooks([
                     ...books,
                     {
-                      id: books.length + 1,
-                      book_name: bookName,
-                      book_review: bookReview,
-                      book_image: bookImg,
-                      printing_company: bookCompany,
-                      printing_year: bookYear,
-                      pricing: bookPrice,
+                      index: books.length + 1,
+                      title: bookName,
+                      description: bookReview,
+                      cover: bookImg,
+                      originalTitle: bookCompany,
+                      releaseDate: bookYear,
+                      pages: bookPrice,
                     },
                   ]);
                   defaultKa();
@@ -135,9 +135,10 @@ export default function BooksList({
           )}
         </div>
         <div className={styles.booksFlex}>
-          {books.map((book, index) => (
-            <BookCard key={index} book={book} DeleteBook={DeleteBook} />
-          ))}
+          {books?.length > 0 && (books.map((book) => (
+            <BookCard key={book.index} book={book} DeleteBook={DeleteBook} />
+          )))}
+          {books?.length ==0 && (<h3>No data</h3>)}
         </div>
       </div>
     </section>
