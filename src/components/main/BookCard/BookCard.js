@@ -15,8 +15,8 @@ export default function BookCard({ book, DeleteBook }) {
         <Image
           className={styles.bookImage}
           src={book.cover}
-          width={250}
-          height={350}
+          width={300}
+          height={400}
           alt="book image"
         />
         <div className={styles.Information}>
@@ -40,7 +40,7 @@ export default function BookCard({ book, DeleteBook }) {
             {!moreState && "more"}
             {moreState && "less"}
           </button>
-          {!bookIndex && <Link href={`/${book.index}`}>Details</Link>}
+          {!bookIndex && <Link className={styles.link} href={`/books/${book.index}`}>Details</Link>}
           {DeleteBook != undefined && (
             <button
               className={`button ${styles.deleteButton}`}

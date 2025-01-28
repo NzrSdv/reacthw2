@@ -7,6 +7,12 @@
     height: 100px;
     color:white;
 }
+.right{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap:40px;
+}
 .logo{
     padding-top: 20px;
     display: flex;

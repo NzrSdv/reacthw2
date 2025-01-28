@@ -67,7 +67,7 @@ export default function AuthorsSection({ setAuthors, authors, DeleteAuthor }) {
             </div>
           </div>
         )}
-        <div className="Authors-flex">
+        <div className={styles.authors}>
           {authors.map((author, index) => (
             <AuthorCard
               key={index}

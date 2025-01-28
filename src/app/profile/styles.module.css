@@ -1,0 +1,19 @@
+.profile{
+    background-color: royalblue;
+    padding:50px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:30px;
+    color:white;
+}
+.logout{
+    background-color: rgb(196, 37, 37);
+    transition: ease-in-out .2s;
+}
+.logout:hover{
+    background-color: rgb(133, 23, 23);
+
+}
