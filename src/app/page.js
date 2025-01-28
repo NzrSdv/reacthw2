@@ -1,11 +1,20 @@
 "use client";
-import React, {  useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Main from "@/components/main/Main";
 import axios from "axios";
-
+import { useRouter } from "next/navigation";
 import { useSearch } from "@/hooks/useSearch";
+import { useAuth } from "./context/AuthContext";
 export default function Home() {
-  
+  const { isAuthorised } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isAuthorised) {
+      router.push("/login");
+    }
+  }, [isAuthorised]);
+
   const [books, setBooks] = useState([]);
   const [authors, setAuthors] = useState([
     {
@@ -19,12 +28,11 @@ export default function Home() {
   const url = "https://potterapi-fedeperin.vercel.app/en/books";
   const [searchBooks, setSearchBooks] = useState("");
   const [selectBooks, setSelectBooks] = useState("");
-  const searchedAndFilteredBooks = useSearch(searchBooks,selectBooks,books);
+  const searchedAndFilteredBooks = useSearch(searchBooks, selectBooks, books);
 
-
-  async function getBooks(){
-    const response = await axios.get(url,{})
-    setBooks(response.data)
+  async function getBooks() {
+    const response = await axios.get(url, {});
+    setBooks(response.data);
     console.log(response.data);
   }
   function DeleteBook(index) {
@@ -47,11 +55,9 @@ export default function Home() {
   }
   useEffect(() => {
     getBooks();
-  },[])
+  }, []);
   return (
     <div>
-     
-
       <Main
         setBooks={setBooks}
         books={searchedAndFilteredBooks}

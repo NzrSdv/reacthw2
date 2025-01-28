@@ -1,3 +1,9 @@
+@media (max-width:2560px) {
+    .bookCard{
+        display: flex;
+        flex-direction: row;
+    }
+}
 .bookCard{
     display: flex;
     flex-direction: column;
@@ -6,7 +12,7 @@
     background-color: royalblue;
     border-radius: 20px;
     padding:40px;
-    max-width: 300px;
+    max-width: 350px;
     min-height: 610px;
     gap:10px;   
     color:white;
@@ -28,6 +34,17 @@
 .buttons{
     display: flex;
     gap:30px;
+    align-items: center;
+}
+.link{
+    border:1px solid white;
+    border-radius: 10px;
+    padding:10px 20px;
+    transition: ease-in-out .2s;
+    font-size: small;
+}
+.link:hover{
+    background-color: rgb(52, 83, 177);
 }
 .deleteButton{
     background-color: rgb(205, 0, 0);

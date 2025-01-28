@@ -1,8 +1,14 @@
 .footer {
-    margin-top: 160px;
   background-color: royalblue;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding:40px 80px;
+  height: 80px;
+  padding: 0 80px;
+  position:sticky;
+  margin-top: 100px;
+  top:100dvh;
+  bottom:0;
+  left:0;
+  right: 0;
 }
