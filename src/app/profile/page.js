@@ -1,11 +1,11 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useAuth } from "../context/AuthContext";
+import { useDispatch,useSelector } from "react-redux";
 import { useEffect } from "react";
 import styles from "./styles.module.css";
 
 export default function Profile() {
-  const { isAuthorised, log, user, UserFunc } = useAuth();
+  const {isAuthorised,user} = useSelector((state) => state.Authentification)
     const router = useRouter();
     useEffect(() => {
         if(!isAuthorised || user == {}){

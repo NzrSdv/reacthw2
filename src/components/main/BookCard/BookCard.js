@@ -7,7 +7,6 @@ import { useParams } from "next/navigation";
 
 export default function BookCard({ book, DeleteBook }) {
   const [moreState, setMoreState] = useState(false);
-  console.log(book);
   const { bookIndex } = useParams();
   return (
     <div>

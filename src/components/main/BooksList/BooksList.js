@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import { useState } from "react";
 import BookCard from "../BookCard/BookCard";
 import styles from "./BooksList.module.css";
@@ -19,7 +19,7 @@ export default function BooksList({
   const [bookCompany, setBookCompany] = useState("");
   const [bookYear, setBookYear] = useState("");
   const [bookPrice, setBookPrice] = useState("");
-
+console.log(books)
   function defaultKa() {
     setBookName("");
     setBookReview("");
@@ -43,10 +43,14 @@ export default function BooksList({
               {addBook && "-"} {!addBook && "+"}
             </button>
             <input
-             className={styles.searchInput}
+              className={styles.searchInput}
               type="text"
               placeholder="Search"
-              value={searchBooks != undefined || searchBooks != null ? searchBooks : ""}
+              value={
+                searchBooks != undefined || searchBooks != null
+                  ? searchBooks
+                  : ""
+              }
               onInput={(e) => {
                 setSearchBooks(e.target.value);
                 console.log(searchBooks);
@@ -135,10 +139,11 @@ export default function BooksList({
           )}
         </div>
         <div className={styles.booksFlex}>
-          {books?.length > 0 && (books.map((book) => (
-            <BookCard key={book.index} book={book} DeleteBook={DeleteBook} />
-          )))}
-          {books?.length ==0 && (<h3>No data</h3>)}
+          {books?.length > 0 &&
+            books.map((book) => (
+              <BookCard key={book.index} book={book} DeleteBook={DeleteBook} />
+            ))}
+          {books?.length == 0 && <h3>No data</h3>}
         </div>
       </div>
     </section>

@@ -1,23 +1,43 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useAuth } from "../context/AuthContext.js";
+// import { useAuth } from "../context/AuthContext.js";
 import { useRouter } from "next/navigation";
 import styles from "./styles.module.css";
 
+import { useSelector, useDispatch } from "react-redux";
+import { setIsAuthorised,setUser } from "../store/AuthentificationReducer";
+
 export default function Login() {
-  const { isAuthorised, log, user, UserFunc } = useAuth();
+  //needed variables
+
+  // const { isAuthorised, log, user, UserFunc } = useAuth();
+  const dispatch = useDispatch();
+  const { isAuthorised, user } = useSelector((state) => state.Authentification);
   const router = useRouter();
+
+  //dispatch functions
+  const setNewIsAuthorised = (newState) => {
+    dispatch(setIsAuthorised(newState));
+  };
+
+  const setNewUser = (newUser) => {
+    dispatch(setUser(newUser));
+  };
+
+  //useStates
   const [userName, setUserName] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [isValid, setIsValid] = useState(true);
 
+  //useEffects
   useEffect(() => {
     if (isAuthorised) {
       router.push("/");
     }
   }, [isAuthorised]);
 
+  //functions
   function Valid() {
     if (
       userName.match(/\d+/g) ||
@@ -30,16 +50,23 @@ export default function Login() {
     }
   }
   function SetAndChekc() {
-    setIsValid(Valid());
+    
     if (Valid()) {
-      UserFunc({
+      setNewUser({
         username: userName,
         email: userEmail,
         password: userPassword,
       });
-      log(true);
+      setNewIsAuthorised(true);
+      setIsValid(true);
     }
+    else{
+      setIsValid(false)
+    }
+    
   }
+
+  //jsx
   return (
     <div className="container" style={{ margin: "70px 5dvw 0 " }}>
       <div className={styles.inputs}>
@@ -68,15 +95,11 @@ export default function Login() {
             setUserPassword(e.target.value);
           }}
         />
-        <button
-          onClick={() => {
-            SetAndChekc();
-          }}
-          className="button"
-        >
+        <button onClick={SetAndChekc} className="button">
           Log in
         </button>
       </div>
+      {/* Window that inputs are not valid))) */}
       {!isValid && (
         <div className={styles.invalid}>
           <div className={styles.window}>
