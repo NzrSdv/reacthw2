@@ -4,14 +4,16 @@ const { createStore, combineReducers, applyMiddleware } = require("redux");
 
 import { AuthentificationReducer } from "./AuthentificationReducer";
 import { BooksReducer } from "./BooksReducer";
+import { AuthorReducer } from "./AuthorReducer";
 //nado realisovat'
-// users reducer
-// books reducer
-// author reducer
-// footer state reducer ???
+// users reducer x 
+// books reducer check
+// author reducer check
+// footer state reducer ??? x
 const rootReducer = combineReducers({
     Authentification:AuthentificationReducer,
-    Books:BooksReducer
+    Books:BooksReducer,
+    Authors:AuthorReducer
 })
 const store = createStore(rootReducer,applyMiddleware(thunk));
 

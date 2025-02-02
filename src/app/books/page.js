@@ -2,24 +2,26 @@
 import BooksList from "@/components/main/BooksList/BooksList";
 import { useSearch } from "@/hooks/useSearch";
 import { useEffect, useState } from "react";
-import axios from "axios";
-
+import { setBooks } from "../store/BooksReducer";
+import { fetchBooks } from "../store/asyncActions/BooksAsyncAction";
+import { useDispatch, useSelector } from "react-redux";
 export default function Books() {
-  const url = "https://potterapi-fedeperin.vercel.app/en/books";
-
-  const [books, setBooks] = useState([]);
-
+  const dispatch = useDispatch();
+  const books = useSelector((state) => state.Books.books);
   const [searchBooks, setSearchBooks] = useState("");
   const [selectBooks, setSelectBooks] = useState("");
   const newBooks = useSearch(searchBooks, selectBooks, books);
 
-  async function getBooks() {
-    const response = await axios.get(url, {});
-    setBooks(response.data);
-    console.log(response.data);
+  useEffect(() => {
+    dispatch(fetchBooks());
+  }, [dispatch]);
+
+  function setBook(newBooks) {
+    dispatch(setBooks(newBooks));
   }
+
   function DeleteBook(index) {
-    setBooks(
+    setBook(
       [...books].filter((element) => {
         if (element.index != index) {
           return element;
@@ -27,12 +29,9 @@ export default function Books() {
       })
     );
   }
-  useEffect(() => {
-    getBooks();
-  }, []);
   return (
     <BooksList
-      setBooks={setBooks}
+      setBooks={setBook}
       books={newBooks}
       DeleteBook={DeleteBook}
       searchBooks={searchBooks}

@@ -4,13 +4,10 @@ import Main from "@/components/main/Main";
 import { useRouter } from "next/navigation";
 import { useSearch } from "@/hooks/useSearch";
 import { useSelector, useDispatch } from "react-redux";
-
-
-
+// const url = "https://potterapi-fedeperin.vercel.app/en/books";
+import { setAuthors ,DeleteAuthor} from "./store/AuthorReducer";
 import { fetchBooks } from "./store/asyncActions/BooksAsyncAction";
 import { removeBook, setBooks } from "./store/BooksReducer";
-
-
 
 // import axios from "axios";
 export default function Home() {
@@ -18,11 +15,9 @@ export default function Home() {
   const dispatch = useDispatch();
   const router = useRouter();
   //states with redux
-  const { isAuthorised } = useSelector((state) => state.Authentification);
+  const isAuthorised = useSelector((state) => state.Authentification.isAuthorised);
 
-  const books = useSelector((state) => {
-    state.Books.books;
-  });
+  const books = useSelector((state) => state.Books.books);
 
   //dispatch Functions
 
@@ -32,6 +27,9 @@ export default function Home() {
   function DeleteBook(index) {
     dispatch(removeBook(index));
   }
+  function setAuthor(author){
+    dispatch(setAuthors(author))
+  }
   //useEffects
 
   useEffect(() => {
@@ -39,36 +37,21 @@ export default function Home() {
       router.push("/login");
     }
   }, [isAuthorised]);
+
   useEffect(() => {
     dispatch(fetchBooks())
-  }, []);
-
+  }, [dispatch]);
   //states with useState()
+  const authors = useSelector(state => state.Authors.authors)
 
-  const [authors, setAuthors] = useState([
-    {
-      id: 1,
-      author_name: "Alexander Duma",
-      famous_book: "three musketeers",
-      author_photo:
-        "https://images.pexels.com/photos/9268697/pexels-photo-9268697.jpeg",
-    },
-  ]);
   const [searchBooks, setSearchBooks] = useState("");
   const [selectBooks, setSelectBooks] = useState("");
-
   //filtered and searched array of books
   const searchedAndFilteredBooks = useSearch(searchBooks, selectBooks, books);
 
   //Functions
-  function DeleteAuthor(id) {
-    setAuthors(
-      [...authors].filter((element) => {
-        if (element.id != id) {
-          return element;
-        }
-      })
-    );
+  function DeleteAuthors(id){
+    dispatch(DeleteAuthor(id))
   }
 
   return (
@@ -77,9 +60,9 @@ export default function Home() {
         setBooks={setBook}
         books={searchedAndFilteredBooks}
         DeleteBook={DeleteBook}
-        setAuthors={setAuthors}
+        setAuthors={setAuthor}
         authors={authors}
-        DeleteAuthor={DeleteAuthor}
+        DeleteAuthor={DeleteAuthors}
         searchBooks={searchBooks}
         setSearchBooks={setSearchBooks}
         selectBooks={selectBooks}

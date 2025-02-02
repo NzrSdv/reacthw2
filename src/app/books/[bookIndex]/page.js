@@ -1,27 +1,20 @@
 "use client";
 import BookCard from "@/components/main/BookCard/BookCard";
-import axios from "axios";
+import { fetchBook } from "@/app/store/asyncActions/BooksAsyncAction";
 import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+
+import { useDispatch,useSelector } from "react-redux";
 
 export default function Book() {
     const { bookIndex } = useParams();
-    console.log(bookIndex)
-  const url = "https://potterapi-fedeperin.vercel.app/en/books";
-  
-  const [book, setBook] = useState("");
-  async function getB() {
-    const response = await axios.get(url,{
-        params:{
-            index:bookIndex
-        }
-    });
-    console.log(response.data);
-    setBook(response.data);
-}
+    const dispatch = useDispatch();
+    const book = useSelector((state) => state.Books.book)
     useEffect(() => {
-      getB();
-    }, []);
+dispatch(fetchBook(bookIndex))
+    },[])
+  // const url = "https://potterapi-fedeperin.vercel.app/en/books";
+
   return <div style={{display:"flex", alignItems:"center",justifyContent:"center",marginTop:"50px"}}>
     {book && <BookCard book={book} DeleteBook={undefined}></BookCard>}
     {!book && <h1>Downloading</h1>}
