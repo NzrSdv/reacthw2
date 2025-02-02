@@ -1,13 +1,36 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Main from "@/components/main/Main";
-import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useSearch } from "@/hooks/useSearch";
-import { useAuth } from "./context/AuthContext";
+import { useSelector, useDispatch } from "react-redux";
+// const url = "https://potterapi-fedeperin.vercel.app/en/books";
+import { setAuthors ,DeleteAuthor} from "./store/AuthorReducer";
+import { fetchBooks } from "./store/asyncActions/BooksAsyncAction";
+import { removeBook, setBooks } from "./store/BooksReducer";
+
+// import axios from "axios";
 export default function Home() {
-  const { isAuthorised } = useAuth();
+  //needed variables constants and etc.
+  const dispatch = useDispatch();
   const router = useRouter();
+  //states with redux
+  const isAuthorised = useSelector((state) => state.Authentification.isAuthorised);
+
+  const books = useSelector((state) => state.Books.books);
+
+  //dispatch Functions
+
+  function setBook(newBooks) {
+    dispatch(setBooks(newBooks));
+  }
+  function DeleteBook(index) {
+    dispatch(removeBook(index));
+  }
+  function setAuthor(author){
+    dispatch(setAuthors(author))
+  }
+  //useEffects
 
   useEffect(() => {
     if (!isAuthorised) {
@@ -15,56 +38,31 @@ export default function Home() {
     }
   }, [isAuthorised]);
 
-  const [books, setBooks] = useState([]);
-  const [authors, setAuthors] = useState([
-    {
-      id: 1,
-      author_name: "Alexander Duma",
-      famous_book: "three musketeers",
-      author_photo:
-        "https://images.pexels.com/photos/9268697/pexels-photo-9268697.jpeg",
-    },
-  ]);
-  const url = "https://potterapi-fedeperin.vercel.app/en/books";
+  useEffect(() => {
+    dispatch(fetchBooks())
+  }, [dispatch]);
+  //states with useState()
+  const authors = useSelector(state => state.Authors.authors)
+
   const [searchBooks, setSearchBooks] = useState("");
   const [selectBooks, setSelectBooks] = useState("");
+  //filtered and searched array of books
   const searchedAndFilteredBooks = useSearch(searchBooks, selectBooks, books);
 
-  async function getBooks() {
-    const response = await axios.get(url, {});
-    setBooks(response.data);
-    console.log(response.data);
+  //Functions
+  function DeleteAuthors(id){
+    dispatch(DeleteAuthor(id))
   }
-  function DeleteBook(index) {
-    setBooks(
-      [...books].filter((element) => {
-        if (element.index != index) {
-          return element;
-        }
-      })
-    );
-  }
-  function DeleteAuthor(id) {
-    setAuthors(
-      [...authors].filter((element) => {
-        if (element.id != id) {
-          return element;
-        }
-      })
-    );
-  }
-  useEffect(() => {
-    getBooks();
-  }, []);
+
   return (
     <div>
       <Main
-        setBooks={setBooks}
+        setBooks={setBook}
         books={searchedAndFilteredBooks}
         DeleteBook={DeleteBook}
-        setAuthors={setAuthors}
+        setAuthors={setAuthor}
         authors={authors}
-        DeleteAuthor={DeleteAuthor}
+        DeleteAuthor={DeleteAuthors}
         searchBooks={searchBooks}
         setSearchBooks={setSearchBooks}
         selectBooks={selectBooks}

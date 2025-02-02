@@ -3,12 +3,12 @@ import React, { useState } from "react";
 import CityInput from "./CityInput/CityInput.js";
 import styles from "./Header.module.css";
 import Link from "next/link.js";
-import { useAuth } from "@/app/context/AuthContext.js";
 
+import { useSelector} from "react-redux";
 export default function Header() {
   const [city, setCity] = useState("");
 
-  const { isAuthorised } = useAuth();
+  const isAuthorised = useSelector((state) => state.Authentification.isAuthorised)
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
