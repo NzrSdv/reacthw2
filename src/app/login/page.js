@@ -5,14 +5,14 @@ import { useRouter } from "next/navigation";
 import styles from "./styles.module.css";
 
 import { useSelector, useDispatch } from "react-redux";
-import { setIsAuthorised,setUser } from "../store/AuthentificationReducer";
+import { setIsAuthorised,setUser } from "../store/Slices/AuthentificationSlice";
 
 export default function Login() {
   //needed variables
 
   // const { isAuthorised, log, user, UserFunc } = useAuth();
   const dispatch = useDispatch();
-  const { isAuthorised, user } = useSelector((state) => state.Authentification);
+  const {isAuthorised}  = useSelector((state) => state.Authentification);
   const router = useRouter();
 
   //dispatch functions
@@ -63,6 +63,7 @@ export default function Login() {
     else{
       setIsValid(false)
     }
+    console.log(isAuthorised)
     
   }
 

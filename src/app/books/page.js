@@ -2,7 +2,7 @@
 import BooksList from "@/components/main/BooksList/BooksList";
 import { useSearch } from "@/hooks/useSearch";
 import { useEffect, useState } from "react";
-import { setBooks } from "../store/BooksReducer";
+import { setBooks } from "../store/Reducers/BooksReducer";
 import { fetchBooks } from "../store/asyncActions/BooksAsyncAction";
 import { useDispatch, useSelector } from "react-redux";
 export default function Books() {

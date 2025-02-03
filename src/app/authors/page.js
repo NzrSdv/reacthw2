@@ -2,7 +2,7 @@
 import AuthorsSection from "@/components/main/AuthorsSection/AuthorsSection";
 import { useState } from "react";
 import { useDispatch,useSelector } from "react-redux";
-import { setAuthors,DeleteAuthor } from "../store/AuthorReducer";
+import { setAuthors,DeleteAuthor } from "../store/Reducers/AuthorReducer";
 export default function Authors(){
   const dispatch = useDispatch();
   const authors = useSelector(state => state.Authors.authors)
