@@ -1,3 +1,4 @@
+
 const { createSlice } = require("@reduxjs/toolkit");
 
 const initialState = {
@@ -9,14 +10,18 @@ const BooksSlice = createSlice({
     name:"Books",
     initialState,
     reducers:{
-        setBooks:(Books) => {
-            state.books = Books;
+        setBooks:(state,action) => {
+            state.books = action.payload;
         },
-        setBook:(Book) => {
-            state.book = Book;
+        setBook:(state,action) => {
+            state.book = action.payload;
         }
-        ,removeBook:(index)=> {
-            state.books = state.books.filter(book => book.index != index);
+        ,removeBook:(state,action)=> {
+            state.books = state.books.filter(book => {
+                if(book.index != action.payload){
+                    return book;
+                }
+            });
         }
     }
 })

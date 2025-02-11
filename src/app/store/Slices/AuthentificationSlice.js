@@ -14,7 +14,7 @@ const AuthentificationSlice = createSlice({
   initialState,
   reducers: {
     setIsAuthorised: (state,action) => {
-      state.isAuthorised = state.action;
+      state.isAuthorised = action.payload;
     },
     setUser: (state,action) => {
       state.user = action.payload;

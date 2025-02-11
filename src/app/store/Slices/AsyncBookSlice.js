@@ -9,7 +9,7 @@ export const asyncBookSlice = createApi({
         })
         ,
         getBook:builder.query({
-            query:(bookIndex) => `/books/${bookIndex}`
+            query:(bookIndex) => `/books?index=${bookIndex}`
         })
     })
 })
