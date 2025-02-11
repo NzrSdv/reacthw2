@@ -1,8 +1,7 @@
 'use client';
 import AuthorsSection from "@/components/main/AuthorsSection/AuthorsSection";
-import { useState } from "react";
 import { useDispatch,useSelector } from "react-redux";
-import { setAuthors,DeleteAuthor } from "../store/AuthorReducer";
+import { setAuthors,deleteAuthor } from "../store/Slices/AuthorSlice";
 export default function Authors(){
   const dispatch = useDispatch();
   const authors = useSelector(state => state.Authors.authors)
@@ -11,7 +10,7 @@ export default function Authors(){
       dispatch(setAuthors(author))
     }
     function DeleteAuthors(id){
-      dispatch(DeleteAuthor(id))
+      dispatch(deleteAuthor(id))
     }
     return (<AuthorsSection authors={authors} setAuthors={setAuthor} DeleteAuthor={DeleteAuthors}></AuthorsSection>)
 }

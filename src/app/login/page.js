@@ -5,14 +5,19 @@ import { useRouter } from "next/navigation";
 import styles from "./styles.module.css";
 
 import { useSelector, useDispatch } from "react-redux";
-import { setIsAuthorised,setUser } from "../store/AuthentificationReducer";
+import {
+  setIsAuthorised,
+  setUser,
+} from "../store/Slices/AuthentificationSlice";
 
 export default function Login() {
   //needed variables
 
   // const { isAuthorised, log, user, UserFunc } = useAuth();
   const dispatch = useDispatch();
-  const { isAuthorised, user } = useSelector((state) => state.Authentification);
+  const isAuthorised = useSelector(
+    (state) => state.Authentification.isAuthorised
+  );
   const router = useRouter();
 
   //dispatch functions
@@ -50,20 +55,18 @@ export default function Login() {
     }
   }
   function SetAndChekc() {
-    
     if (Valid()) {
       setNewUser({
         username: userName,
         email: userEmail,
         password: userPassword,
       });
-      setNewIsAuthorised(true);
       setIsValid(true);
+      setNewIsAuthorised(true);
+      console.log(isAuthorised);
+    } else {
+      setIsValid(false);
     }
-    else{
-      setIsValid(false)
-    }
-    
   }
 
   //jsx
@@ -95,7 +98,12 @@ export default function Login() {
             setUserPassword(e.target.value);
           }}
         />
-        <button onClick={SetAndChekc} className="button">
+        <button
+          onClick={() => {
+            SetAndChekc();
+          }}
+          className="button"
+        >
           Log in
         </button>
       </div>

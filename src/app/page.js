@@ -4,11 +4,11 @@ import Main from "@/components/main/Main";
 import { useRouter } from "next/navigation";
 import { useSearch } from "@/hooks/useSearch";
 import { useSelector, useDispatch } from "react-redux";
+import { deleteAuthor, setAuthors } from "./store/Slices/AuthorSlice";
+import { removeBook, setBooks } from "./store/Slices/BooksSlice";
+import { useGetBookQuery, useGetBooksQuery } from "./store/Slices/AsyncBookSlice";
+import { setIsAuthorised } from "./store/Slices/AuthentificationSlice";
 // const url = "https://potterapi-fedeperin.vercel.app/en/books";
-import { setAuthors ,DeleteAuthor} from "./store/AuthorReducer";
-import { fetchBooks } from "./store/asyncActions/BooksAsyncAction";
-import { removeBook, setBooks } from "./store/BooksReducer";
-
 // import axios from "axios";
 export default function Home() {
   //needed variables constants and etc.
@@ -16,9 +16,17 @@ export default function Home() {
   const router = useRouter();
   //states with redux
   const isAuthorised = useSelector((state) => state.Authentification.isAuthorised);
+  console.log(isAuthorised);
 
   const books = useSelector((state) => state.Books.books);
 
+  const {data,error,isLoading} = useGetBooksQuery()
+    if(error){
+      alert(error);
+    }
+    else if(!isLoading){
+      setBook(data);
+    }
   //dispatch Functions
 
   function setBook(newBooks) {
@@ -37,10 +45,6 @@ export default function Home() {
       router.push("/login");
     }
   }, [isAuthorised]);
-
-  useEffect(() => {
-    dispatch(fetchBooks())
-  }, [dispatch]);
   //states with useState()
   const authors = useSelector(state => state.Authors.authors)
 
@@ -51,7 +55,7 @@ export default function Home() {
 
   //Functions
   function DeleteAuthors(id){
-    dispatch(DeleteAuthor(id))
+    dispatch(deleteAuthor(id))
   }
 
   return (
